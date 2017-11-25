@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="loginModule">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1.0,  minimum-scale=1.0,user-scalable=no" name="viewport">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+        <title>Actividades agronomicas</title>
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../assets/css/mediaQueries.css">
+        <link rel="stylesheet" href="../assets/css/style2.css">
+    </head>
+
+    <body class="theme-blue" ng-controller="inicio">
+        <div class="menu_bar">
+            <a href="#" class="bt-menu"><i class="material-icons">reorder</i>Menu</a>
+        </div>
+        <header>
+            <nav>
+                <ul class="nav">
+                    <li><a href="">Menu</a>
+                        <ul>
+                            <li><a href="">Productos</a></li>
+                            <li><a href="">Pedidos</a></li>
+                            <li><a href="">Estadisticas</a>
+                                <ul>
+                                    <li><a href="">Por mes</a></li>
+                                    <li><a href="">Por producto</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Edicion informacion</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav_opt" href="#/quienesSomos">¿Quienes somos?</a></li>
+                    <li><a ng-click="gotoBottom('datos2')" class="nav_opt" >Equipo</a></li>
+                    <li><a ng-click="gotoBottom('datos3')" class="nav_opt" >Galeria</a></li>
+                    <li><a ng-click="gotoBottom('datos4')" class="nav_opt" >Contacto</a></li>
+                    <li style="float: right;"><a class="nav_opt"  href="">Salir</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="content" ng-view="">
+
+        </section>
+    </body>
+
+    <script src="../shared/common.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="../bower_components/ui-listView/src/ui-listView.js"></script>
+    <script type="text/javascript" src="../assets/js/script.js"> </script>
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="../plugins/jquery-steps/jquery.steps.js"></script>
+    <script src="../assets/js/pages/forms/form-wizard.js"></script>
+    <script src="../plugins/node-waves/waves.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script src="app.js"> </script>
+</html>

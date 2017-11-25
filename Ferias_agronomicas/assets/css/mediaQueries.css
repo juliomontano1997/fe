@@ -9,7 +9,7 @@
         position: relative;
         overflow: hidden;
         margin-bottom: 4px; }
-    section.content 
+    section .content
     {
         margin: 80px 100px 10px 10px;
         -moz-transition: 0.5s;
