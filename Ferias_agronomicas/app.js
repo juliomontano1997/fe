@@ -1,5 +1,3 @@
-
-
 var app = angular.module('loginModule',["ngRoute","ngResource"]);
 app.controller('inicio', function($scope, $http, $location, $anchorScroll)
 {
@@ -14,14 +12,19 @@ app.controller('inicio', function($scope, $http, $location, $anchorScroll)
 
     $scope.doLogin = function ()
     {
-        if($scope.username ==='a')
-        {
-            window.location.href = ('administrador/adminIndex.html');
-        }
-        else
-        {
-            window.location.href = ('clientes/clientesIndex.html');
-        }
+
+        $http({method : "GET", url:'http://localhost:8081/autenticacion?user='+$scope.username+'&password='+$scope.password})
+            .then(
+                function mySucces(response)
+                {
+                    alert(response);
+                    console.log(response);
+                    if(response.data[0].mg_login==='A') { window.location.href = ('administrador/adminIndex.html');}
+                    else if (response.data[0].mg_login==='U') {window.location.href = ('clientes/clientesIndex.html');}
+                    else {alert("Hubo un error en la peticion");}
+                },
+                function myError(response) {alert("No tienes conexion");}
+                );
     };
 });
 
