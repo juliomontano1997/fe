@@ -1,39 +1,14 @@
-var app = angular.module('loginModule',["ngRoute","ngResource"]);
-app.controller('inicio', function($scope, $http, $location, $anchorScroll)
+angular.module('moduloAdministrador',["ngRoute","ngResource"])
+.config(['$routeProvider',function($routeProvider)
 {
-    $scope.username = "";
-    $scope.password = "";
-
-    $scope.gotoBottom = function (param){
-        // set the location.hash to the id of
-        //window.location.href =('#/quieneSomos');
-        // the element you wish to scroll to.
-        $location.hash(param);
-
-        // call $anchorScroll()
-        $anchorScroll();
-    };
-
-    $scope.doLogin = function ()
-    {
-        window.location.href = ('main/main.html');
-        /* $http({method : "GET", url:'http://localhost:8081/autenticacion?user='+$scope.username+'&password='+$scope.password})
-             .then(
-                 function mySucces(response)
-                 {
-                     alert(response);
-                     console.log(response);
-                     if(response.data[0].mg_login===true) {}
-                     else {alert("Hubo un error en la peticion");}
-                 },
-                 function myError(response) {alert("No tienes conexion");});*/
-    };
-});
-
-app.config(['$routeProvider',function($routeProvider)
-{
-    $routeProvider.when("/quienesSomos",{templateUrl:'main/secciones/quienes_somos.html',controller: 'inicio'})
-    .when("/login",{templateUrl:'main/secciones/login.html',controller: 'inicio'});
+      console.log("Configurando");
+      $routeProvider.when("/edicionInformacion",{templateUrl:'secciones/edicion_informacion.html',controller: 'informacionCtrl'})
+                    .when("/estadisticasP",{templateUrl:'secciones/estadisticas_producto.html',controller: 'estadisticasPCtrl'})
+                    .when("/estadisticasM",{templateUrl:'secciones/estadisticas_mes.html',controller: 'estadisticasMCtrl'})
+                    .when("/informacion",{templateUrl:"secciones/informacion.html",controller: 'informacionCtrl'})
+                    .when("/productos",{templateUrl:'secciones/productos.html',controller: 'productosCtrl'})
+                    .when("/pedidos",{templateUrl:'secciones/pedidos.html',controller: 'pedidosCtrl'})
+                    .when("/inicio",{templateUrl:'secciones/inicio.html',controller: 'inicioCtrl'});
 }
 ]);
 

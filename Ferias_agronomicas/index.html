@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html ng-app="loginModule">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1.0,  minimum-scale=1.0,user-scalable=no" name="viewport">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
         <title>Actividades agronomicas</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -20,10 +19,10 @@
         <header>
             <nav>
                 <ul>
-                    <li><a class="nav_opt" href="#/quienesSomos">¿Quienes somos?</a></li>
-                    <li><a ng-click="gotoBottom('datos2')" class="nav_opt" >Equipo</a></li>
-                    <li><a ng-click="gotoBottom('datos3')" class="nav_opt" >Galeria</a></li>
-                    <li><a ng-click="gotoBottom('datos4')" class="nav_opt" >Contacto</a></li>
+                    <li><a ng-click="goto('datos1')" class="nav_opt" >¿Quienes somos?</a></li>
+                    <li><a ng-click="goto('datos2')" class="nav_opt" >Equipo</a></li>
+                    <li><a ng-click="goto('datos3')" class="nav_opt" >Galeria</a></li>
+                    <li><a ng-click="goto('datos4')" class="nav_opt" >Contacto</a></li>
                     <li style="float: right;"><a class="nav_opt"  href="#/login">Iniciar sesion</a></li>
                 </ul>
             </nav>
@@ -33,7 +32,8 @@
         <section class="content" ng-view="">
             <div class="container-fluid">
                 <!--Esta seccion es para los datos de la pagina principal -->
-                <section id="datos1">
+                <a id="datos1"></a>
+                <section >
                     <h2>¿Quienes  somos?</h2>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -72,7 +72,9 @@
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </section>
-                <section id="datos2">
+
+                <a id="datos2"></a>
+                <section >
                     <h2>Equipo</h2>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -111,7 +113,8 @@
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </section>
-                <section id="datos3">
+                <a id="datos3"></a>
+                <section >
                     <h2>Galeria</h2>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -150,7 +153,8 @@
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </section>
-                <section id="datos4">
+                <a id="datos4"></a>
+                <section >
                     <h2>Contacto</h2>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
