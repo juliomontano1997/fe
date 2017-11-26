@@ -1,17 +1,31 @@
-var app = angular.module('loginModule',["ngRoute","ngResource"]);
-app.controller('inicio', function($scope, $http, $location, $anchorScroll)
+angular.module('loginModule',["ngRoute","ngResource"])
+.controller('mainCtrl', function ()
+{
+    window.location.href =("#/quienesSomos#datos1");
+})
+.controller('inicio', function($scope, $http, $location, $anchorScroll)
 {
     $scope.username = "";
     $scope.password = "";
 
-    $scope.goto= function (param)
+    var parametros = location.hash.split("#");
+    console.log(parametros);
+    if(parametros.length>2)
     {
-        $location.hash(param);
+        console.log("PASO"+parametros[2]);
+        $location.hash(parametros[2]);
         $anchorScroll();
-    };
+    }
+
 
     $scope.doLogin = function ()
     {
+        window.location.href = ('administrador/adminIndex.html');
+
+    }
+
+
+        /*
 
         $http({method : "GET", url:'http://localhost:8081/autenticacion?user='+$scope.username+'&password='+$scope.password})
             .then(
@@ -25,11 +39,9 @@ app.controller('inicio', function($scope, $http, $location, $anchorScroll)
                 },
                 function myError(response) {alert("No tienes conexion");}
                 );
-    };
-});
-
-
-app.config(['$routeProvider',function($routeProvider)
+    };*/
+})
+.config(['$routeProvider',function($routeProvider)
 {
     $routeProvider.when("/quienesSomos",{templateUrl:'main/secciones/quienes_somos.html',controller: 'inicio'})
     .when("/login",{templateUrl:'main/secciones/login.html',controller: 'inicio'});

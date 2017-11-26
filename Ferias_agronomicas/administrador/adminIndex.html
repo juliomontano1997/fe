@@ -1,87 +1,79 @@
-<!DOCTYPE html>
 <html ng-app="moduloAdministrador">
-<head>
-    <meta charset="utf-8">
-    <title>Menu Dropdown Adaptable</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../assets/js/menuresponsive.js"></script>
-    <style>
-        .verde , .verde > nav
-        {
-            background:#5B9507;
-            color:#C3CC07;
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Ferias agronomicas</title>
+        <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../assets/js/menuresponsive.js"></script>
+    </head>
 
 
-<body   ng-controller="inicioCtrl">
-<header class="container" >
-    <nav class="navbar verde">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav"   style="width:100%;">
-                    <li class="divider"></li>
+    <body ng-controller="mainCtrl">
+    <header class="container" >
+        <nav style="background:#5B9507;" class="navbar">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav"   style="width:100%;">
+                        <li class="divider"></li>
 
-                    <li  class="dropdown">
-                        <a href="" class="dropdown-toggle">Menu<b class="caret"></b></a>
-                        <ul   class="dropdown-menu">
-                            <li><a href="#/productos">Productos</a></li>
-                            <li><a href="#/pedidos">Pedidos</a></li>
 
-                            <li  class="dropdown ">
-                                <a href="" class="dropdown-toggle ">Estadisticas <b class="caret right"></b></a>
-                                <ul  class="dropdown-menu ">
-                                    <li class="verde" ><a class=""  href="#/estadisticasP">Por producto</a></li>
-                                    <li class="verde"><a class=""  href="#/estadisticasM">Por mes</a></li>
-                                </ul>
-                            </li>
-                            <li class=""> <a class="" href="#/edicionInformacion">Editar informacion de la pagina</a></li>
-                        </ul>
-                    </li>
+                        <li  class="dropdown">
+                            <a href="" class="dropdown-toggle">Menu<b class="caret"></b></a>
+                            <ul   class="dropdown-menu">
+                                <li><a href="#/productos">Productos</a></li>
+                                <li><a href="#/pedidos">Pedidos</a></li>
 
-                    <li><a ng-click="mostrarInformacion()">¿Quienes somos?  </a></li>
-                    <li><a ng-click="gotoBottom('datos2')" href="">Equipo</a></li>
-                    <li><a ng-click="gotoBottom('datos2')" href="">Galeria</a></li>
-                    <li><a ng-click="gotoBottom('datos2')"  ref="">Contacto</a></li>
-                    <li  style="float:right;"><a  href="../index.html" >Salir</a></li>
-                </ul>
+                                <li  class="dropdown ">
+                                    <a href="" class="dropdown-toggle ">Estadisticas <b class="caret right"></b></a>
+                                    <ul  class="dropdown-menu ">
+                                        <li><a class=""  href="#/estadisticasP">Por producto</a></li>
+                                        <li><a class=""  href="#/estadisticasM">Por mes</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""> <a class="" href="#/edicionInformacion">Editar informacion de la pagina</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#/informacion#datos1">¿Quienes somos?  </a></li>
+                        <li><a href="#/informacion#datos2">Equipo</a></li>
+                        <li><a href="#/informacion#datos3">Galeria</a></li>
+                        <li><a href="#/informacion#datos4">Contacto</a></li>
+                        <li  style="float:right;"><a  href="../index.html" >Salir</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
 
-<section class="content" ng-view="">
-</section>
-</body>
-<script src="../shared/common.js"></script>
-<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
-<script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
-<script type="text/javascript" src="../bower_components/ui-listView/src/ui-listView.js"></script>
-<script type="text/javascript" src="../assets/js/script.js"> </script>
-<script src="../plugins/jquery/jquery.min.js"></script>
-<script src="../plugins/bootstrap/js/bootstrap.js"></script>
-<script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
-<script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script src="../plugins/jquery-steps/jquery.steps.js"></script>
-<script src="../assets/js/pages/forms/form-wizard.js"></script>
-<script src="../plugins/node-waves/waves.js"></script>
-<script src="../assets/js/admin.js"></script>
+    <section class="content" ng-view="">
+    </section>
+
+    </body>
+    <script src="../shared/common.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="../bower_components/ui-listView/src/ui-listView.js"></script>
+    <script type="text/javascript" src="../assets/js/script.js"> </script>
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="../plugins/jquery-steps/jquery.steps.js"></script>
+    <script src="../assets/js/pages/forms/form-wizard.js"></script>
+    <script src="../plugins/node-waves/waves.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script src="../bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="../bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="app.js"> </script>
 
 
-<script src="app.js"> </script>
-<script src="controladores/informacionC.js"></script>
-<script src="controladores/inicioC.js"></script>
-<script src="controladores/estadisticasMC.js"></script>
-<script src="controladores/pedidosC.js"></script>
-<script src="controladores/productosC.js"></script>
-<script src="controladores/estadisticasPC.js"></script>
+
 </html>
 
