@@ -1,47 +1,39 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="moduloCliente">
 <head>
     <meta charset="utf-8">
-    <title>Menu Dropdown Adaptable</title>
+    <title>Ferias agronomicas</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../assets/js/menuresponsive.js"></script>
-
-    <style>
-        .verde , .verde > nav
-        {
-            background:#5B9507;
-            color:#C3CC07;
-        }
-        header nav ul li a
-        {
-            color: #C3CC07;
-            padding: 20px;
-            display: block;
-            text-decoration: none;
-        }
-    </style>
-
 </head>
 
-<body>
-<header class="container">
-    <nav class="navbar verde">
+
+<body ng-controller="mainCtrl">
+<header class="container" >
+    <nav style="background:#5B9507;" class="navbar">
         <div class="container-fluid">
-            <div class="collapse navbar-collapse verde" id="menu">
+            <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav"   style="width:100%;">
-                    <li class="verde" ><a  class="verde" href="">¿Quienes somos?</a></li>
-                    <li class="verde" ><a class="verde"  href="">Equipo</a></li>
-                    <li class="verde" ><a class="verde"  href="">Galeria</a></li>
-                    <li class="verde" ><a class="verde" href="">Contacto</a></li>
-                    <li class="verde" style="float:right;"><a class="verde"  href="../index.html">Salir</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/informacion#datos1">¿Quienes somos?  </a></li>
+                    <li><a href="#/informacion#datos2">Equipo</a></li>
+                    <li><a href="#/informacion#datos3">Galeria</a></li>
+                    <li><a href="#/informacion#datos4">Contacto</a></li>
+                    <li><a href="#/nuevoPedido">Nuevo pedido</a></li>
+                    <li  style="float:right;"><a  href="../index.html" >Salir</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+
+
+<section class="content" ng-view="">
+</section>
+
 </body>
 <script src="../shared/common.js"></script>
 <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -59,6 +51,11 @@
 <script src="../assets/js/pages/forms/form-wizard.js"></script>
 <script src="../plugins/node-waves/waves.js"></script>
 <script src="../assets/js/admin.js"></script>
+<script src="../bower_components/chart.js/dist/Chart.min.js"></script>
+<script src="../bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 <script src="app.js"> </script>
+
+
+
 </html>
 

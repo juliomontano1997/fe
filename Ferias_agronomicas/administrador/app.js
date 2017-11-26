@@ -88,18 +88,89 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
 
     .controller("estadisticasPCtrl", function ($http,$scope, $location, $anchorScroll)
     {
+
+        // Temporal: lo que hara es mostrar los datos cuando se tenga una respuesta
+        // de la base de datos
+
+
+        $scope.ingresosProductos;  // ocumpamos el nombre, y el monto, desde una consulta sql a la base de datos.
+
+        var nombres = [];
+        var montos = [];
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: "bar",
+
+            // The data for our dataset
+            data: {
+                labels: nombres,
+                datasets: [{
+                    label: "Ingresos por producto:",
+                    backgroundColor: 'rgb(0, 102, 255)',
+                    borderColor: 'rgb(0, 102, 255)',
+                    data:montos
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
         console.log("estadisticasPCtrl");
+        $scope.prueba2 = function () {
+            console.log(nombres);
+            console.log(montos);
+            chart.reload();
+        };
+
+        $scope.prueba = function () {
+            console.log("precionao");
+            nombres = ["banano", "piña"];
+            montos = [1000,100];
+
+
+        };
     })
     .controller("estadisticasMCtrl", function ($http,$scope, $location, $anchorScroll)
     {
-        console.log("estadisticasMCtrl");
+
+        // Se hara una  consulta a la base de datos y luego se cargan los resultados.
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: "bar",
+
+            // The data for our dataset
+            data: {
+                labels: months,
+                datasets: [{
+                    label: "Ingreso del mes:",
+                    backgroundColor: 'rgb(0, 102, 255)',
+                    borderColor: 'rgb(0, 102, 255)',
+                    data: [20000, 40000,60000, 80000, 0, 120000, 140000, 160000]
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
     })
     .controller("informacionECtrl", function ($http,$scope, $location, $anchorScroll)
     {
         $scope.cargarInformacionActual = function ()
         {
 
-        }
+        };
 
         $scope.guardarInformacionEditada = function ()
         {
@@ -112,7 +183,7 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
             $routeProvider.when("/edicionInformacion",{templateUrl:'secciones/edicion_informacion.html',controller: 'informacionECtrl'})
                           .when("/estadisticasP", {templateUrl:'secciones/estadisticas_producto.html',controller: 'estadisticasPCtrl'})
                           .when("/estadisticasM",{templateUrl:'secciones/estadisticas_mes.html',controller: 'estadisticasMCtrl'})
-                          .when("/informacion",{templateUrl:"secciones/informacion.html",controller: 'informacionCtrl'})
+                          .when("/informacion",{templateUrl:"../main/secciones/quienes_somos.html",controller: 'informacionCtrl'})
                           .when("/productos",{templateUrl:'secciones/productos.html',controller: 'productosCtrl'})
                           .when("/pedidos",{templateUrl:'secciones/pedidos.html',controller: 'pedidosCtrl'});
     }]);

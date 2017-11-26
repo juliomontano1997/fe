@@ -1,0 +1,53 @@
+<div style="width: 100%" >
+
+
+
+    <div style="display: inline; width: 50%; height: 70%;" >
+        <h4>Productos disponibles</h4>
+        <!--<ul  style="display:inline-block;list-style: none; padding:0;">
+           l ng-repeat se pone en el elemento que se desea repetir, en este caso en el <li>
+           <li ng-repeat="producto in productos track by $index">
+               <button type="button" class="btn btn-default btn-sm">
+                   <span class="glyphicon glyphicon-remove"></span>
+                   <a href="#" data-toggle="tooltip" title="Hooray!">Hover over me</a>
+               </button>
+               <img ng-src="../shared/images/{{producto.r_imagen}}" width="350px" height="auto" style="padding-left: 8px;">
+           </li>
+       </ul>-->
+        <ul  style="display:inline-table;list-style: none;">
+            <li width="350px" style="border: 1px #050406" height="200px" data-trigger="hover" data-placement="right" title="Nombre:  &#10;Precio:  &#10;Variedad"><img src="../shared/images/invernadero.jpg" width="350px" height="auto" style="padding-left: 8px;"></li>
+
+            <li ng-click=""><img src="../shared/images/recolecta.jpg" width="250px" height="auto" style="padding-left: 8px;">
+
+            </li>
+        </ul>
+    </div>
+
+    <div  style="display: inline;float: right; width: 50%; height: 70%; background: #fbfff9">
+        <h4>Orden parcial</h4>
+
+        <div style="border: 1px #050605">
+            <table class="table" style="border: 1px #050605">
+                <thead>
+                <tr>  <td>Producto</td>  <td>Cantidad</td>  <td>Precio</td> </tr>
+                </thead>
+                <tbody>
+                <tr editable-td row="{{$index}}" ng-repeat="producto in productosSeleccionados"
+                    onmouseover='this.style.backgroundColor="#B4C7E6"'
+                    onmouseout='this.style.backgroundColor="#3B4A95"'>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.precio}}</td>
+                </tr>
+                <tr>
+                    <td>Platano</td>
+                    <td>3</td>
+                    <td>200</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

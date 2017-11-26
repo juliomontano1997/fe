@@ -231,7 +231,7 @@ END;
 $body$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION historial.mg_get_productos_factura(IN e_codigoO INT,OUT r_id_factura INT, OUT r_id INT, OUT r_nombre t_nombre,
+CREATE OR REPLACE FUNCTION mg_get_productos_factura(IN e_codigoO INT,OUT r_id_factura INT, OUT r_id INT, OUT r_nombre t_nombre,
 							     OUT r_precio NUMERIC, OUT r_cantidad INT, OUT r_precio_parcial NUMERIC)
 RETURNS
 SETOF RECORD AS
@@ -274,27 +274,55 @@ INSERT INTO telefonos (identificador,telefono) VALUES
 ('6-6666-6666','4682-2211');
 
 ----------------------------------------------------------INSERTS DE VARIEDAD---------------------------------------------------------
-INSERT INTO variedades (codigo,nombre) VALUES
-(1,'caribeña'),
-(2,'rojita'),
-(3,'criolla'),
-(4,'cherry');
+INSERT INTO variedades (nombre) VALUES
+('Amarilla'),
+('Rojita'),
+('Criolla'),
+('Cherry'),
+('Romana'),
+('Lollo Rosso'),
+('Marketmore'),
+('Habanero'),
+('Jalapeño'),
+('Coyote');
 ----------------------------------------------------------INSERTS DE PRODUCTOS---------------------------------------------------------
 INSERT INTO productos (nombre, imagen, precioUnitarioActual, unidadMedicion, descripcion, codigoV) VALUES
-('Papa','faltaEnlace',2500,'kilo','-',1),
-('Tomate','faltaEnlace',2500,'kilo','-',4),
-('Yuca','faltaEnlace',2500,'kilo','-',3);
+('Papa','papa.png',2500,'kilo','Papa Amarilla',1),
+('Tomate','tomate.jpg',2500,'kilo','Tomate Cherry',4),
+('Yuca','yuca.jpg',2500,'kilo','Yuca Criolla',3),
+('Lechuga','lechugaR.jpg',1600,'unidad','Lechuga Romana',5),
+('Lechuga','lechugaL.jpg',1900,'unidad','Lechuga Lollo Rosso',6),
+('Pepino','pepino.jpg',700,'kilo','Pepino Marketmore',7),
+('Chile','habanero.jpg',900,'kilo','Chile Habanero',8),
+('Chile','jalapeño.jpg',1000,'kilo','Chile Jalapeño',9),
+('Culantro','culantro.jpg',350,'bolsa','Culantro Coyote',10);
 
 ---------------------------------------------------------INSERTS DE ORDENES------------------------------------------------------------
-INSERT INTO ordenes (identificadorCliente, fechaEmision,monto) VALUES
-('2-2222-2222', '2017-02-21',2500),
-('3-3333-3333','2017-02-21', 2500);
+INSERT INTO ordenes (identificadorCliente, fechaEmision, monto) VALUES
+('2-2222-2222', '2017-02-21',4100),
+('3-3333-3333','2017-04-26', 4100),
+('4-4444-4444', '2017-06-15',350),
+('5-5555-5555','2017-03-02', 700),
+('6-6666-6666', '2017-09-11',2500),
+('3-3333-3333','2017-11-10', 2500),
+('2-2222-2222', '2017-12-01',1000),
+('5-5555-5555','2017-01-06', 900);
 
 -----------------------------------------------------INSERTS DE DETALLES DE ORDENES----------------------------------------------------
 INSERT INTO detalles (codigoO, codigoP, cantidadProducto, precioUnitario) VALUES
-(1,2,1,2500),
-(2,3,1,2500);
+(1,3,3,2500),
+(1,6,4,1600),
+(2,2,2,2500),
+(2,7,5,1600),
+(3,9,2,350),
+(4,6,1,700),
+(5,3,6,2500),
+(6,1,4,2500),
+(7,8,7,1000),
+(8,7,4,900);
 
 ---------------------------------------------------------INSERTS DE EXPRESS------------------------------------------------------------
 INSERT INTO express (codigo, codigoO, monto, direccion, fechaEntrega) VALUES
 (1,1,500,'computacion','2017-03-03');
+
+

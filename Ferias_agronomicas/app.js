@@ -20,8 +20,14 @@ angular.module('loginModule',["ngRoute","ngResource"])
 
     $scope.doLogin = function ()
     {
-        window.location.href = ('administrador/adminIndex.html');
-
+        console.log("Otra pagina");
+        if($scope.username =='a')
+        {
+            window.location.href = ('administrador/adminIndex.html');
+        }
+        else {
+            window.location.href = ('clientes/clientesIndex.html');
+        }
     }
 
 
@@ -43,7 +49,7 @@ angular.module('loginModule',["ngRoute","ngResource"])
 })
 .config(['$routeProvider',function($routeProvider)
 {
-    $routeProvider.when("/quienesSomos",{templateUrl:'main/secciones/quienes_somos.html',controller: 'inicio'})
+    $routeProvider.when("/quienesSomos",{templateUrl:'main/secciones/quienes_somos2.html',controller: 'inicio'})
     .when("/login",{templateUrl:'main/secciones/login.html',controller: 'inicio'});
 }
 ]);
