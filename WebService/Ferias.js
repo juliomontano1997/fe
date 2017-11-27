@@ -67,11 +67,32 @@ app.get('/agregar_pedido',
 );
 
 
-
-app.post('/agregar_detalle',
+app.get('/ingresosMes',
     function(req, res)
     {
-        db.func('insertar_detalles', [req.query.codigoO, req.query.codigoP, req.query.cantidad,req.query.precio])
+        db.func('mg_get_estadisticasMes', [])
+            .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
+    .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
+    }
+);
+
+
+app.get('/ingresosMes',
+    function(req, res)
+    {
+        db.func('mg_get_estadisticasMes', [])
+            .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
+    .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
+    }
+);
+
+
+
+
+app.get('/ingresosProducto',
+    function(req, res)
+    {
+        db.func('mg_get_estadisticasProductos', [])
             .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
             .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
     }

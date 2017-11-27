@@ -71,6 +71,7 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
         };
         cargarProductos();
     })
+
     
     .controller("pedidosCtrl", function ($http,$scope, $location, $anchorScroll)
     {
@@ -113,79 +114,103 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
 
     .controller("estadisticasPCtrl", function ($http,$scope, $location, $anchorScroll)
     {
-
-        // Temporal: lo que hara es mostrar los datos cuando se tenga una respuesta
-        // de la base de datos
-
-
-        $scope.ingresosProductos;  // ocumpamos el nombre, y el monto, desde una consulta sql a la base de datos.
-
+        $scope.ingresoProductos;
         var nombres = [];
-        var montos = [];
+        var ingresos = [];
+        $http({method : "GET", url:'http://localhost:8081/ingresosProducto'})
+            .then(
+                function mySucces(response)
+                {
+                    $scope.ingresoProductos = response.data;
+                    var maximo = $scope.ingresoProductos.length;
+                    for(i=0; i<maximo; i++)
+                    {
+                        nombres[i]=$scope.ingresoProductos[i].r_nombre;
+                        ingresos[i]=$scope.ingresoProductos[i].r_promedio;
+                    }
 
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: "bar",
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var chart = new Chart(ctx, {
+                        // The type of chart we want to create
+                        type: "bar",
 
-            // The data for our dataset
-            data: {
-                labels: nombres,
-                datasets: [{
-                    label: "Ingresos por producto:",
-                    backgroundColor: 'rgb(0, 102, 255)',
-                    borderColor: 'rgb(0, 102, 255)',
-                    data:montos
-                }]
-            },
+                        // The data for our dataset
+                        data: {
+                            labels: nombres,
+                            datasets: [{
+                                label: "Ingresos por producto:",
+                                backgroundColor: 'rgb(0, 102, 255)',
+                                borderColor: 'rgb(0, 102, 255)',
+                                data: ingresos
+                            }]
+                        },
 
-            // Configuration options go here
-            options: {}
-        });
-        console.log("estadisticasPCtrl");
-        $scope.prueba2 = function ()
-        {
-        };
-
-        $scope.prueba = function () {
-            console.log("precionao");
-            nombres = ["banano", "piña"];
-            montos = [1000,100];
-        };
+                        // Configuration options go here
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                },
+                function myError(response) {alert(response);}
+            );
     })
     .controller("estadisticasMCtrl", function ($http,$scope, $location, $anchorScroll)
     {
 
-        // Se hara una  consulta a la base de datos y luego se cargan los resultados.
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: "bar",
+        $scope.ingresoMeses;
+        var ingresos = [];
+        $http({method : "GET", url:'http://localhost:8081/ingresosMes'})
+            .then(
+                function mySucces(response)
+                {
+                    $scope.ingresoMeses = response.data;
+                    var maximo = $scope.ingresoMeses.length;
+                    for(i=0; i<maximo; i++)
+                    {
+                        ingresos[i]=$scope.ingresoMeses[i].r_promedio;
+                    }
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var chart = new Chart(ctx, {
+                        // The type of chart we want to create
+                        type: "bar",
 
-            // The data for our dataset
-            data: {
-                labels: months,
-                datasets: [{
-                    label: "Ingreso del mes:",
-                    backgroundColor: 'rgb(0, 102, 255)',
-                    borderColor: 'rgb(0, 102, 255)',
-                    data: [20000, 40000,60000, 80000, 0, 120000, 140000, 160000]
-                }]
-            },
+                        // The data for our dataset
+                        data: {
+                            labels: months,
+                            datasets: [{
+                                label: "Ingreso del mes:",
+                                backgroundColor: 'rgb(0, 102, 255)',
+                                borderColor: 'rgb(0, 102, 255)',
+                                data: ingresos
+                            }]
+                        },
 
-            // Configuration options go here
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
+                        // Configuration options go here
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
                         }
-                    }]
-                }
-            }
-        });
+                    });
+
+
+                },
+                function myError(response) {alert(response);}
+            );
+
 
     })
+
     .controller("informacionECtrl", function ($http,$scope, $location, $anchorScroll)
     {
         $scope.cargarInformacionActual = function ()
