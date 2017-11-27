@@ -24,8 +24,6 @@ angular.module('loginModule',["ngRoute","ngResource"])
             .then(
                 function mySucces(response)
                 {
-                    alert(response);
-                    console.log(response);
                     if(response.data[0].mg_login==='A') { window.location.href = ('administrador/adminIndex.html');}
                     else if (response.data[0].mg_login==='U') {localStorage.setItem("ced_cliente", $scope.username);window.location.href = ('clientes/clientesIndex.html');}
                     else {alert("Hubo un error en la peticion");}

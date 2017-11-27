@@ -126,6 +126,7 @@ angular.module('moduloCliente',["ngRoute","ngResource", "chart.js"])
                                             function mySucces(res) {console.log(res)},
                                             function myError(res) {alert("No tienes conexion");});
                                 }
+                                alert("Pedido completado");
                                 window.location.reload();
                             }
                         },

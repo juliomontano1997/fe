@@ -3,6 +3,7 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
     {
           window.location.href=("#/informacion#datos1");
     })
+
     .controller("informacionCtrl", function ($http,$scope,  $location, $anchorScroll)
     {
         var parametros = location.hash.split("#");
@@ -72,7 +73,7 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
         cargarProductos();
     })
 
-    
+
     .controller("pedidosCtrl", function ($http,$scope, $location, $anchorScroll)
     {
         $scope.clientes;  // nombre, cedula

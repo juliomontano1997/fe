@@ -66,15 +66,15 @@ app.get('/agregar_pedido',
     }
 );
 
-
-app.get('/ingresosMes',
-    function(req, res)
-    {
-        db.func('mg_get_estadisticasMes', [])
+app.post('/agregar_detalle',
+        function(req, res)
+        {
+            db.func('insertar_detalles', [req.query.codigoO, req.query.codigoP, req.query.cantidad,req.query.precio])
             .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
-    .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
-    }
+            .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
+        }
 );
+
 
 
 app.get('/ingresosMes',
