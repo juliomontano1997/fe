@@ -246,6 +246,32 @@ END;
 $body$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION mg_get_estadisticasProductos(OUT r_nombre TEXT,OUT r_promedio NUMERIC)
+RETURNS
+SETOF RECORD AS
+$body$
+BEGIN
+	RETURN query
+	SELECT coalesce(p.nombre||' '||v.nombre) nombre , o.promedio FROM
+	(SELECT codigo, nombre, codigoV FROM productos) p INNER JOIN
+	(SELECT codigo, nombre FROM variedades)v ON v.codigo = p.codigoV INNER JOIN
+	(SELECT codigoP, AVG(CAST(precioUnitario AS NUMERIC)*cantidadProducto) "promedio" FROM detalles GROUP BY codigoP) o ON o.codigoP = p.codigo;
+END;
+$body$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION mg_get_estadisticasMes(OUT r_mes TEXT, OUT r_promedio NUMERIC)
+RETURNS
+SETOF RECORD AS
+$body$
+BEGIN
+	RETURN query
+	SELECT to_char(CAST(fechaCancelado AS date),'Month'), AVG(CAST(monto AS NUMERIC)) "Promedio" FROM ordenes where estado = false
+	GROUP BY fechaCancelado ORDER BY to_char(fechaCancelado,'MM');
+END;
+$body$
+LANGUAGE plpgsql;
+
 ----------------------------------------------------------INSERTS DE PERSONAS--------------------------------------------------------------------
 INSERT INTO personas (identificador, nombre, apellido1, apellido2, rango, carrera, tipo, contraseña) VALUES
 ('1-1111-1111','Ana','Rojas' ,'Podriguez' ,'profesor','agronomia','A',md5('11111'||'1-1111-1111'||'azZA')),
@@ -324,5 +350,4 @@ INSERT INTO detalles (codigoO, codigoP, cantidadProducto, precioUnitario) VALUES
 ---------------------------------------------------------INSERTS DE EXPRESS------------------------------------------------------------
 INSERT INTO express (codigo, codigoO, monto, direccion, fechaEntrega) VALUES
 (1,1,500,'computacion','2017-03-03');
-
 
