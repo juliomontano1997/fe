@@ -1,4 +1,4 @@
--- Dominios
+﻿-- Dominios
 
 --TELEFONO
 CREATE DOMAIN t_telefono char(9) not null constraint CHK_telefono check (value similar to '[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]');
@@ -22,6 +22,8 @@ CREATE DOMAIN t_tipo varchar(2) not null constraint CHK_tipoPersona check(value 
 
 --CONTREASEÑA
 CREATE DOMAIN t_contrasena varchar(5) not null;
+
+
 
 CREATE TABLE personas
 (
@@ -52,6 +54,8 @@ CREATE TABLE telefonos
 	constraint PK_identificador_telefono primary key (identificador,telefono),
 	constraint FK_identificador_personas foreign key (identificador) references personas
 );
+
+
 
 CREATE TABLE ordenes
 (
@@ -155,15 +159,18 @@ LANGUAGE plpgsql;
 
 --------------------------------------------------------METODO DE ORDENES-------------------------------------------------------------
 CREATE OR REPLACE FUNCTION insertar_ordenes(e_cedula t_cedula, e_fecha date, e_monto numeric)
-RETURNS BOOLEAN AS
+RETURNS INT AS
 $body$
 BEGIN
 	INSERT INTO ordenes(identificadorCliente, fechaEmision, monto) VALUES (e_cedula, e_fecha, e_monto);
-	RETURN TRUE;
-	EXCEPTION WHEN OTHERS THEN RETURN FALSE;
+	RETURN (SELECT MAX(codigo) FROM ordenes);
+	EXCEPTION WHEN OTHERS THEN RETURN -1;
+	
 END;
 $body$
 LANGUAGE plpgsql;
+
+
 
 CREATE OR REPLACE FUNCTION eliminar_ordenes(e_codigoO int )
 RETURNS BOOLEAN AS
@@ -179,7 +186,7 @@ LANGUAGE plpgsql;
 -------------------------------------------------------------------METODOS DE DETALLE-----------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION insertar_detalles(e_codigoO int, e_codigoP int, e_cantidadProducto int, e_precioU numeric)
-RETURNS BOOLEAN AS
+RETURNS BOOLEAN AS 
 $body$
 BEGIN
 	INSERT INTO detalles(codigoO, codigoP, cantidadProducto, precioUnitario) VALUES (e_codigoO, e_codigoP, e_cantidadProducto, e_precioU);
@@ -188,6 +195,8 @@ BEGIN
 END;
 $body$
 LANGUAGE plpgsql;
+
+
 
 CREATE OR REPLACE FUNCTION eliminar_detalles(e_codigoO int, e_codigoP int )
 RETURNS BOOLEAN AS
@@ -217,12 +226,12 @@ END;
 $body$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION mg_get_productos(OUT r_codigo INT, OUT r_nombre t_nombre, OUT r_precio NUMERIC, OUT r_descripcion t_descripcion, OUT r_id_variedad INT, OUT r_nombre_variedad t_nombre)
+CREATE OR REPLACE FUNCTION mg_get_productos(OUT r_codigo INT, OUT r_unidadMedicion varchar(30),OUT r_imagen varchar(20), OUT r_nombre t_nombre, OUT r_precio NUMERIC, OUT r_descripcion t_descripcion, OUT r_id_variedad INT, OUT r_nombre_variedad t_nombre)
 RETURNS
 SETOF RECORD AS
 $body$
 BEGIN
-	RETURN query SELECT  productos.codigo, productos.nombre, productos.precioUnitarioActual::NUMERIC, productos.descripcion, variedades.codigo, variedades.nombre from
+	RETURN query SELECT  productos.codigo,unidadMedicion,productos.imagen, productos.nombre, productos.precioUnitarioActual::NUMERIC, productos.descripcion, variedades.codigo, variedades.nombre from
 		productos
 		inner join
 		variedades
@@ -230,6 +239,7 @@ BEGIN
 END;
 $body$
 LANGUAGE plpgsql;
+
 
 CREATE OR REPLACE FUNCTION mg_get_productos_factura(IN e_codigoO INT,OUT r_id_factura INT, OUT r_id INT, OUT r_nombre t_nombre,
 							     OUT r_precio NUMERIC, OUT r_cantidad INT, OUT r_precio_parcial NUMERIC)
@@ -326,3 +336,5 @@ INSERT INTO express (codigo, codigoO, monto, direccion, fechaEntrega) VALUES
 (1,1,500,'computacion','2017-03-03');
 
 
+
+select mg_get_productos()

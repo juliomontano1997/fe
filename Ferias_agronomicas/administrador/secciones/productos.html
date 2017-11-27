@@ -1,36 +1,52 @@
 <div class="container-fluid">
+    <style>
+        .wrapper
+        {
+            overflow:hidden;
+            width:100%;
+        }
+        .wrapper
+        {
+            list-style: none;
+            width:100%;
+            margin-top:-10px;
+        }
 
-    <div style="border: 1px solid #c9432e">
-    <h3>Productos</h3>
-    <div>
-        <div class="form-group">
-            <label for="i2">Nombre</label>
-            <input  id="i2" class="form-control">
+        img {
+            width:100px;
+            height:75px;
+            float:left;
+            margin:10px 10px 0 0;
+            border: 1px #050406;
+        }
+    </style>
+
+    <center>
+        <h3>Productos</h3>
+        <div style="display: inline-flex" >
+        <div  style="width: 300px; border: 1px solid #c9432e">
+            <div class="form-group">
+                <label style="background:#C3CC07" for="i2">Nombre_</label>
+                <input ng-model="productoActual.r_nombre" id="i2" class="form-control">
+                <br>
+                <label  style="background:#C3CC07" for="i3">Precio___</label>
+                <input  ng-model="productoActual.r_precio"  id="i3" class="form-control">
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+            <button ng-click="anterior()"> < Anterior</button>
+            <button ng-click="guardar()">Guardar</button>
+            <!--<button ng-click="eliminar()">Eliminar</button>-->
+            <button ng-click="siguiente()">Siguiente ></button>
         </div>
-        <div class="form-group">
-            <label for="i3">Precio</label>
-            <input  id="i3" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="i4">Cantidad</label>
-            <input  id="i4" class="form-control">
+        <div style="float: left">
+            <img ng-src="../shared/images/{{productoActual.r_imagen}}">
         </div>
     </div>
 
-    <div>
-        <img src="">
-    </div>
 
-    <div class="form-group">
-        <a ng-click="guardarProducto()">Guardar
-            <i class="material-icons">assignment</i>
-        </a> <a ng-click="guardarProducto()">Eliminar
-        <i class="material-icons">assignment</i>
-
-    </a> <a ng-click="guardarProducto()">Siguiente
-        <i class="material-icons">assignment</i>
-    </a>
-    </div>
-    </div>
+</center>
 </div>

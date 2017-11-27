@@ -16,35 +16,60 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
     .controller("productosCtrl", function ($http,$scope,  $location, $anchorScroll)
     {
         $scope.productos; // lista que se va a recorrer
+        $scope.productoActual;
+        var indiceActual = 0;
 
-        $scope.cargarProductos = function () {
-
-        };
-
-        $scope.guardarProducto = function ()
+        function  cargarProductos()
         {
-            console.log("Guardando producto");
+            $http({method : "GET", url:'http://localhost:8081/get_productos'})
+                .then(
+                    function mySucces(response) {if(response.data!= false){$scope.productos = response.data;$scope.productoActual= $scope.productos[0];}},
+                    function myError(response) {alert("No tienes conexion");});
+        }
+
+        $scope.anterior = function ()
+        {
+            if(indiceActual===0)
+            {
+                return;
+            }
+            else{
+                indiceActual--;
+            }
+            $scope.productoActual = $scope.productos[indiceActual];
         };
 
-        $scope.siguienteProducto = function ()
+        $scope.guardar = function ()
         {
-            console.log("Siguiente producto");
+
+            $http({method : "POST", url:'http://localhost:8081/modificar_producto?codigo='+$scope.productoActual.r_codigo+
+                '&nombre='+$scope.productoActual.r_nombre+'&imagen='+$scope.productoActual.r_imagen+
+            '&precio='+$scope.productoActual.r_precio+'&medicion='+$scope.productoActual.r_unidadMedicion+
+            '&descripcion='+$scope.productoActual.r_descripcion})
+                .then(
+                    function mySucces(response) {if(response.data!= false){alert("Guardado")}},
+                    function myError(response) {alert("No tienes conexion");});
         };
 
-        $scope.anteriorProducto = function ()
+
+        $scope.siguiente = function ()
         {
-            console.log("anterior producto");
+            if(indiceActual=== $scope.productos.length-1)
+            {
+                return;
+            }
+            else{
+                indiceActual++;
+            }
+            $scope.productoActual = $scope.productos[indiceActual];
         };
 
-        $scope.eliminarProducto = function ()
+
+        $scope.eliminar = function ()
         {
-            console.log("eliminando producto");
+            var producto = $scope.productos[indiceActual];
         };
-        
-        $scope.guardarImagenEditada = function ()
-        {
-            console.log("imagen producto");
-        };
+        cargarProductos();
     })
     
     .controller("pedidosCtrl", function ($http,$scope, $location, $anchorScroll)
@@ -118,18 +143,14 @@ angular.module('moduloAdministrador',["ngRoute","ngResource", "chart.js"])
             options: {}
         });
         console.log("estadisticasPCtrl");
-        $scope.prueba2 = function () {
-            console.log(nombres);
-            console.log(montos);
-            chart.reload();
+        $scope.prueba2 = function ()
+        {
         };
 
         $scope.prueba = function () {
             console.log("precionao");
             nombres = ["banano", "piña"];
             montos = [1000,100];
-
-
         };
     })
     .controller("estadisticasMCtrl", function ($http,$scope, $location, $anchorScroll)

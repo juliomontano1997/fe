@@ -1,15 +1,39 @@
 <div class="container-fluid" style="font-size: 20px; margin: 50px;">
+
+    <style>
+        .wrapper {
+            overflow:hidden;
+            width:100%;
+        }
+        .wrapper div {
+            /* cualquier altura mayor que el total de sumar la anchura de las img */
+            width:100%;
+
+            /* para evitar el margen superior de la primera fila */
+            margin-top:-10px;
+        }
+
+        img {
+            width:240px;
+            height:150px;
+            float:left;
+            margin:10px 10px 0 0;
+            border: 1px #050406;
+        }
+
+    </style>
+
     <section id="datos1" >
         <h4>¿Quienes  somos?</h4>
         <p>
-            <img src="shared/images/invernadero.jpg" align="left" border="1" width="350px" height="auto">
-            Actividades agronómicas es un proyecto de la escuala de agronomía del Instituto
+            <img src="shared/images/invernadero.jpg" align="left" border="1" width="350px" height="auto">            Actividades agronómicas es un proyecto de la escuala de agronomía del Instituto
             Tecnológico de Costa Rica sede San Carlos, este proyecto se desarrolla en
             los invernaderos
             y parcelas de la sede con el cultivo y producción de hortalizas
             y verduras. Con la venta de estos productos el proyecto pretende contribuir
             económicamente a la escuela de manera que esta pueda ser autosuficiente con sus gastos.  </p>
     </section>
+
     <br clear="left">
     <section id="datos2" style="font-size: 20px">
         <h4>Equipo</h4>
@@ -32,7 +56,6 @@
                 <spam>Recoleccion de yuca</spam>
             </li>
         </ul>
-
     </section>
     <section id="datos4">
         <h4>Contacto</h4>

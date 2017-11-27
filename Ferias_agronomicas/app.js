@@ -20,19 +20,6 @@ angular.module('loginModule',["ngRoute","ngResource"])
 
     $scope.doLogin = function ()
     {
-        console.log("Otra pagina");
-        if($scope.username =='a')
-        {
-            window.location.href = ('administrador/adminIndex.html');
-        }
-        else {
-            window.location.href = ('clientes/clientesIndex.html');
-        }
-    }
-
-
-        /*
-
         $http({method : "GET", url:'http://localhost:8081/autenticacion?user='+$scope.username+'&password='+$scope.password})
             .then(
                 function mySucces(response)
@@ -40,12 +27,12 @@ angular.module('loginModule',["ngRoute","ngResource"])
                     alert(response);
                     console.log(response);
                     if(response.data[0].mg_login==='A') { window.location.href = ('administrador/adminIndex.html');}
-                    else if (response.data[0].mg_login==='U') {window.location.href = ('clientes/clientesIndex.html');}
+                    else if (response.data[0].mg_login==='U') {localStorage.setItem("ced_cliente", $scope.username);window.location.href = ('clientes/clientesIndex.html');}
                     else {alert("Hubo un error en la peticion");}
                 },
                 function myError(response) {alert("No tienes conexion");}
                 );
-    };*/
+    };
 })
 .config(['$routeProvider',function($routeProvider)
 {

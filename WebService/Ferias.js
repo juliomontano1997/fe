@@ -31,6 +31,53 @@ app.get('/autenticacion',
 );
 
 
+app.get('/get_productos',
+    function(req, res)
+    {
+        db.func('mg_get_productos',[])
+            .then(data=> {console.log(data); res.end(JSON.stringify(data));})
+            .catch(error=>{console.log(error); res.end(JSON.stringify(false))})
+    }
+);
+
+app.post('/modificar_producto',
+    function(req, res)
+    {
+        db.func('modificar_productos', [req.query.codigo, req.query.nombre, req.query.imagen,
+                                        req.query.precio, req.query.medicion, req.query.descripcion])
+        .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
+        .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
+    }
+);
+
+
+
+
+//-----------------------   insercion de pedidos ----------------------------------------
+
+
+
+app.get('/agregar_pedido',
+    function(req, res)
+    {
+        db.func('insertar_ordenes', [req.query.cedula, req.query.fecha, req.query.monto])
+            .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
+            .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
+    }
+);
+
+
+
+app.post('/agregar_detalle',
+    function(req, res)
+    {
+        db.func('insertar_detalles', [req.query.codigoO, req.query.codigoP, req.query.cantidad,req.query.precio])
+            .then(data=> {  console.log(data);  res.end(JSON.stringify(data));})
+            .catch(error=>{ console.log(error); res.end(JSON.stringify(false))})
+    }
+);
+
+
 //::::::::::::::::::::::::::::::::: CONFIGURACION DE INICIO :::::::::::::::::::::::::::::::::::::::::
 var server = app.listen(8081,function()
 {
